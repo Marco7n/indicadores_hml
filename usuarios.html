@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>População de Usuários | SEMUS Blumenau</title>
+    <link rel="icon" href="assets/brasao.png">
+    <link rel="stylesheet" href="usuarios.css">
+    <script src="unidades.js" defer></script>
+    <script src="excel.js" defer></script>
+    <script src="usuarios.js" defer></script>
+</head>
+<body class="dashboard">
+    <main id="conteudo" class="usuarios-app">
+        <nav class="voltar" aria-label="Navegação">
+            <a href="index.html" aria-label="Voltar aos painéis" title="Voltar aos painéis">⮐</a>
+        </nav>
+
+        <section class="barra-filtros card" aria-label="Filtros">
+            <div class="campos-filtros">
+                <label class="campo-filtro" for="filtro-unidade">Unidade
+                    <select id="filtro-unidade" disabled><option value="">Todas</option></select>
+                </label>
+                <label class="campo-filtro" for="filtro-condicao">Condição
+                    <select id="filtro-condicao" disabled><option value="">Todas</option></select>
+                </label>
+                <label class="campo-filtro" for="filtro-faixa">Faixa etária
+                    <select id="filtro-faixa" disabled><option value="">Todas</option></select>
+                </label>
+                <label class="campo-filtro" for="filtro-sexo">Sexo
+                    <select id="filtro-sexo" disabled><option value="">Todos</option></select>
+                </label>
+                <div class="acoes-filtros">
+                    <button id="limpar-filtros" type="button" disabled>Limpar filtros</button>
+                    <button id="baixar-excel" type="button" disabled>Baixar Excel</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="painel-grid">
+            <div class="coluna-graficos">
+                <section class="linha-kpis" aria-label="Indicadores">
+                    <article class="kpi card">
+                        <h2>População Cadastrada</h2>
+                        <strong id="total-cadastrados">—</strong>
+                        <p>Usuários diferentes</p>
+                    </article>
+
+                    <article class="kpi card">
+                        <h2>População com Condições Monitoradas</h2>
+                        <strong id="total-condicoes">—</strong>
+                        <p>Com pelo menos uma condição ou fator</p>
+                    </article>
+                </section>
+
+                <section class="grafico card">
+                    <h2>Condições Clínicas e Fatores de Risco</h2>
+                    <div id="legenda-sexo-condicoes" class="legenda-sexos" hidden>
+                        <span>Pessoas por condição</span>
+                        <span class="sexo-feminino">Sexo feminino</span>
+                        <span class="sexo-masculino">Sexo masculino</span>
+                        <span class="nota-sexo" hidden>Outros ou não informados incluídos no total de cada condição</span>
+                    </div>
+                    <div id="grafico-condicoes" class="grafico-barras"></div>
+                </section>
+
+                <section class="grafico card">
+                    <h2>Distribuição por Faixa Etária</h2>
+                    <div id="legenda-sexo-faixas" class="legenda-sexos" hidden>
+                        <span>Pessoas cadastradas</span>
+                        <span class="sexo-feminino">Sexo feminino</span>
+                        <span class="sexo-masculino">Sexo masculino</span>
+                        <span class="nota-sexo" hidden>Outros ou não informados incluídos no total de cada faixa</span>
+                    </div>
+                    <div id="grafico-faixas" class="grafico-barras"></div>
+                </section>
+            </div>
+
+            <section class="lista card" aria-labelledby="titulo-lista">
+                <h2 id="titulo-lista">População Estratificada</h2>
+                <p class="apoio">Lista de cidadãos para acompanhamento e busca ativa</p>
+
+                <div id="rolagem-lista" class="rolagem-lista" tabindex="0" aria-label="Resultados">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">CPF</th>
+                                <th scope="col">Idade</th>
+                                <th scope="col">Sexo</th>
+                                <th scope="col">Condições</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-cidadaos"></tbody>
+                    </table>
+                </div>
+
+                <footer>
+                    <p id="status-lista" class="apoio" role="status">Carregando dados…</p>
+                </footer>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
